@@ -1,0 +1,58 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static  'blog/css/details.css' %}"/>
+<style>
+hr {
+    display: block;
+    unicode-bidi: isolate;
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    overflow: hidden;
+    border-style: inset;
+    border-width: 1px; 
+}
+.block{
+    display: block;
+    color: black;
+}
+.last{
+    display: flex;
+}
+
+.last > img {
+    width: 20%;
+    position: relative;
+    top: -9px;
+}
+</style>
+<div class="completestory">
+    <img class="storyimg"src="{{ post.image.url }}" alt="AWS"/>
+    <div class="storydescription">
+        <h1 class="h1heading">
+            {{ post.title }}
+        </h1>
+        <span class="blog-author">{{post.author.user.username}}</span>
+        <span class="blog-publish-date">| 05 Jul 2019</span>
+        <p>{{ post.content }}
+        </p>
+    </div>
+    <div class ="block">
+            <hr>
+        </div>
+                <div class="last">
+            <img src="{{post.author.image.url}}" alt="">
+            <div>
+            <h4>{{post.author.user.username}}</h4>
+            <p>{{post.author.bio}}</p>
+        </div>
+        </div>
+        <div class="category-5">{{post.category.name}} </div>
+        {%if user.get_username == post.author.user.username%}
+        <div><a href= "{{post.slug}}">edit</a></div>
+        {%endif%}
+        </div>
+</div>
+{% endblock %}

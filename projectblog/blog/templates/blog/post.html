@@ -1,0 +1,58 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+        <style>
+.section1{
+    padding: 13% 16%;
+    min-height: 100vh;
+    background-color: #f2f6ff;
+}
+input[type=submit] {
+  width: 100%;
+  background-color:  #0066ff;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+.textField,input,textarea{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.errorlist{
+    color:red;
+
+}
+.latest-post {
+    min-height: 40vh;
+    background-color: #f2f2f2;
+    padding:10%;
+}
+</style>
+<div class="section1">
+<div class="latest-post">
+        <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% comment %} {% for field in form %}
+            <p>{{ field.label_tag }} </p>
+            <p>{{ field }} </p>
+            <p>{{ field.errors }} </p>
+        {% endfor %} {% endcomment %}
+        {{form.as_table}}
+        <input type="submit" value="Add Post">
+    </form>
+    </div>
+    <div>
+{% endblock%}

@@ -1,0 +1,69 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<style>
+.some{
+    overflow-wrap: break-word;
+}
+</style>
+<div>
+                <div>
+                    <div class="section">
+                        <div class="latest-post">
+                            <div>
+                                <h3 class="latest-post-head">Latest Post</h3>
+                                <div class="filter-category">
+                                    <div class="filter">
+                                        <div class="filter-1">
+                                            <div class="filter-icon">
+                                                <img
+                                                    src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.iconsdb.com%2Ficons%2Fpreview%2Ficon-sets%2Fweb-2-blue%2Ffilled-filter-xxl.png&f=1&nofb=1" />
+                                            </div>
+                                            <p class="filter-text">Filter By Category</p>
+                                        </div>
+                                        <div class="category-1">
+                                        <a href="/blogs/"><div class="category-4">All</div><a>
+                                            {%for cat in categories%}
+                                            
+                                            <a href="/blogs/category/{{cat.name}}"><div class="category-4">{{cat.name}}</div><a>
+                                            {%endfor%}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="blogcard-section">
+                                {% for post in posts%}
+                                    <div class="blogcard-section1 blogcard-section2">
+                                        <a class="BlogCard"
+                                            href="{{ post.get_absolute_url }}">
+                                            <div class="inner-blog">
+                                                <img class="BlogCard-img"
+                                                    src="{{ post.image.url }}"
+                                                    alt="Fresh Graduate or IT professional Looking for a job ? - 7 reasons to learn Python NOW!">
+                                            </div>
+                                            <div class="blog-details">
+                                                <h3 class="blog-head">
+                                                    <div class="some" >{{post.title|truncatechars:30}}<wbr>
+                    
+                                                    </div>
+                                                </h3>
+                                                <p class="blog1-desc">{{post.author.user}}
+                                                    <span class="blog1-detail">
+                                                        |5 Jul 2019</span></p>
+                                                <div class="blog2-detail">
+                                                    <div class="some">{{ post.content|truncatechars:200 }}
+                                                        <wbr>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    {%endfor%}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+{% endblock %}
